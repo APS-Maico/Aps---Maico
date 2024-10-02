@@ -42,7 +42,7 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
         !streetName ||
         !streetNumber
       ) {
-        toast.error('You need to fill all inputs!');
+        toast.error('Você precisa preencher todos os campos!');
       } else {
         data = {
           firstName,
@@ -65,7 +65,7 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
   return (
     <div className='h-100vh z-30 lg:h-full lg:gap-x-8 lg:px-12 lg:py-8'>
       <h2 className='mb-6 pt-6 text-center text-[20px] font-extrabold uppercase lg:pt-0 lg:text-left'>
-        Shipping & Checkout
+      Envio e finalização da compra
       </h2>
       <form
         className='lg-py-0 flex h-[86vh] flex-col overflow-scroll px-8 py-4 lg:h-[29.5rem] lg:flex-row lg:gap-x-4 lg:overflow-visible lg:px-0'
@@ -158,7 +158,7 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
         <div className='flex h-full flex-1 flex-col justify-between px-8 pt-3 lg:max-w-[40%] lg:p-0'>
           <div className='mb-4 flex h-[30.2vh] flex-col rounded-lg border p-4'>
             <h3 className='mb-4 border-b pb-4 text-base font-extrabold uppercase'>
-              Your order
+            Seu pedido
             </h3>
             <div className='scrollbar-track-white-500 flex h-[240px] flex-col gap-y-4 overflow-hidden overflow-y-scroll py-2 font-semibold scrollbar-thin scrollbar-thumb-gray-200 '>
               {cart.map((pizza: Order, index: number) => {
@@ -168,14 +168,14 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
                       <div className='capitalize'>{pizza.name}</div>
                       <div>{pizza.quantity > 1 && `x ${pizza.quantity}`}</div>
                     </div>
-                    <div>${(pizza.price * pizza.quantity).toFixed(2)}</div>
+                    <div>R${(pizza.price * pizza.quantity).toFixed(2)}</div>
                   </div>
                 );
               })}
             </div>
           </div>
           <button className='btn btn-lg gradient w-full' type='submit'>
-            Pay ${totalPrice.toFixed(2)}
+            Pagar R${totalPrice.toFixed(2)}
           </button>
         </div>
       </form>

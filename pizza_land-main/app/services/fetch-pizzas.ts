@@ -6,7 +6,7 @@ export async function getAllPizzas(): Promise<PizzaType[] | undefined> {
     const res = await fetch(`${URL}`);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error("Falha ao buscar dados");
     }
 
     const data = await res.json();

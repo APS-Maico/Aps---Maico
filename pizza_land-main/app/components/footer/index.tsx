@@ -32,7 +32,7 @@ export const Footer = () => {
             </Link>
           </div>
           <div className='font-medium text-white'>
-            Copyright &copy; Pizzaland 2023. All rights reserved.
+            Copyright &copy; Pizzaland 2024. Todos os seus direitos reservados.
           </div>
         </div>
       </div>

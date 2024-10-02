@@ -28,10 +28,10 @@ export const CartItem: React.FC<CartItemProps> = ({ order }) => {
               X
             </span>
           </div>
-          <h2 className='capitalize'>{order.crust} crust</h2>
+          <h2 className='capitalize'>{order.Borda} borda</h2>
           <div className='flex gap-1'>
             <h2 className='capitalize'>{order.size}</h2>
-            <span> size</span>
+            <span> tamanho</span>
           </div>
           <div className='flex items-center justify-between'>
             <div className='flex items-center gap-3'>
@@ -49,7 +49,7 @@ export const CartItem: React.FC<CartItemProps> = ({ order }) => {
                 +
               </button>
             </div>
-            <span>${order.price}</span>
+            <span>R${order.price}</span>
           </div>
         </div>
       </div>

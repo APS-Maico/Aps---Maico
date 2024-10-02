@@ -13,7 +13,7 @@ export const PaymentAccepted: React.FC<PaymentAcceptedProps> = ({
   return (
     <div className='z-50 flex h-[100vh] flex-col items-center justify-center px-6 lg:h-[600px]'>
       <h2 className='text-center text-2xl font-semibold'>
-        Thank you {customerIdentity} ! The order has been placed !
+        Obrigado {customerIdentity} ! O pedido foi concluído !
       </h2>
       <Image
         src={'/success-1.gif'}
@@ -22,7 +22,7 @@ export const PaymentAccepted: React.FC<PaymentAcceptedProps> = ({
         alt='success message'
       />
       <div>
-        This window will close in <span>{count}</span> seconds
+        Esta janela será fechada em <span>{count}</span> segundos
       </div>
     </div>
   );

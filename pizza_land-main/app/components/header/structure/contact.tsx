@@ -7,10 +7,10 @@ export const Contact = () => {
       <Image src={'phone.svg'} width={42} height={42} alt='phone-icon' />
       <div className='text-white'>
         <div className='font-robotoCondensed text-sm font-medium uppercase leading-none'>
-          24/7 Pizza delivery service
+          Serviço de entrega de pizza
         </div>
         <div className='font-robotoCondensed text-3xl font-extrabold leading-none tracking-wide'>
-          920 234 5743
+          (47)3332-8965
         </div>
       </div>
     </div>

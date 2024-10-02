@@ -13,43 +13,78 @@ export default function Home() {
   const pizzas: PizzaType[] = [
     {
       id: 1,
-      name: 'Margherita',
-      description: 'Classic pizza with tomato sauce, mozzarella, and fresh basil',
-      priceLg: 25,
-      priceMd: 20,
-      priceSm: 15,
+      name: 'Marguerita',
+      description: 'Pizza clássica com molho de tomate, mussarela e manjericão fresco',
+      priceLg: 89.90,
+      priceMd: 79.90,
+      priceSm: 69.90,
       image: '/margherita.webp',
       toppings: [
-        { name: 'Extra Cheese', image: '/public/cheese.jpg', price: 2 },
-        { name: 'Basil', image: '/public/basil.jpg', price: 1 },
+        {name: 'Tomate', image: '/cherry.png', price: 2},
+        {name: 'Milho', image: '/corn.png', price: 2},
+        {name: 'Pimenta', image: '/jalapeno.png', price: 2},
+        {name: 'Queijo Mussarela', image: '/mozzarella.png', price: 2},
+        {name: 'Azeitona', image: '/olives.png', price: 2},
+        {name: 'Queijo Parmesão', image: '/parmesan.png', price: 2},
+        {name: 'Champion', image: '/mushrooms.png', price: 2},
       ],
     },
     {
       id: 2,
       name: 'Pepperoni',
-      description: 'Delicious pepperoni with a generous amount of cheese',
-      priceLg: 30,
-      priceMd: 25,
-      priceSm: 18,
+      description: 'Deliciosa com salame e uma generosa quantidade de queijo',
+      priceLg: 89.90,
+      priceMd: 79.90,
+      priceSm: 69.90,
       image: '/pepperoni.webp',
       toppings: [
-        { name: 'Pepperoni', image: '/public/pepperoni.jpg', price: 3 },
+        {name: 'Tomate', image: '/cherry.png', price: 2},
+        {name: 'Milho', image: '/corn.png', price: 2},
+        {name: 'Pimenta', image: '/jalapeno.png', price: 2},
+        {name: 'Queijo Mussarela', image: '/mozzarella.png', price: 2},
+        {name: 'Azeitona', image: '/olives.png', price: 2},
+        {name: 'Queijo Parmesão', image: '/parmesan.png', price: 2},
+        {name: 'Champion', image: '/mushrooms.png', price: 2},
       ],
     },
     {
       id: 3,
-      name: 'Vegetarian',
-      description: 'Tomato sauce, mozzarella, and fresh vegetables',
-      priceLg: 22,
-      priceMd: 18,
-      priceSm: 14,
+      name: 'Vegetariana',
+      description: 'Molho de tomate, mussarela e legumes frescos',
+      priceLg: 89.90,
+      priceMd: 79.90,
+      priceSm: 69.90,
       image: '/vegetarian.webp',
       toppings: [
-        { name: 'Bell Peppers', image: '/images/bell-pepper.jpg', price: 1 },
-        { name: 'Mushrooms', image: '/images/mushroom.jpg', price: 1.5 },
+        {name: 'Tomate', image: '/cherry.png', price: 2},
+        {name: 'Milho', image: '/corn.png', price: 2},
+        {name: 'Pimenta', image: '/jalapeno.png', price: 2},
+        {name: 'Queijo Mussarela', image: '/mozzarella.png', price: 2},
+        {name: 'Azeitona', image: '/olives.png', price: 2},
+        {name: 'Queijo Parmesão', image: '/parmesan.png', price: 2},
+        {name: 'Champignon', image: '/mushrooms.png', price: 2},
+      ],
+    },
+    {
+      id: 4,
+      name: 'Caprichosa',
+      description: 'Massa crocante com queijo, pimentão, champignon, salame e muito queijo. Sabor irresistível!',
+      priceLg: 89.90,
+      priceMd: 79.90,
+      priceSm: 69.90,
+      image: '/capricciosa.webp',
+      toppings: [
+        {name: 'Tomate', image: '/cherry.png', price: 2},
+        {name: 'Milho', image: '/corn.png', price: 2},
+        {name: 'Pimenta', image: '/jalapeno.png', price: 2},
+        {name: 'Queijo Mussarela', image: '/mozzarella.png', price: 2},
+        {name: 'Azeitona', image: '/olives.png', price: 2},
+        {name: 'Queijo Parmesão', image: '/parmesan.png', price: 2},
+        {name: 'Champion', image: '/mushrooms.png', price: 2},
       ],
     },
   ];
+  
 
   return (
     <section className='cursor-default'>
@@ -64,7 +99,7 @@ export default function Home() {
             ))
           ) : (
             <p className="text-center col-span-full text-lg font-semibold mt-16">
-              No pizzas available at the moment.
+             Não há pizzas disponíveis no momento.
             </p>
           )}
         </div>

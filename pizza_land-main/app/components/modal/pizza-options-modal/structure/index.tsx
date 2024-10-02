@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 
-import { Topping, SizeSelection, CrustSelection } from './selection';
+import { Topping, SizeSelection, BordaSelection } from './selection';
 
 import { useCartContext, useVisibleContext } from '@/context';
 import { Order, ToppingType } from '@/types/types';
@@ -13,7 +13,7 @@ export const PizzaElementsSelection = () => {
   const pizza = selectedPizza;
 
   const [size, setSize] = React.useState<string>('small');
-  const [crust, setCrust] = React.useState<string>('traditional');
+  const [borda, setborda] = React.useState<string>('traditional');
   const [additionalTopping, setAdditionalTopping] = React.useState<
     ToppingType[]
   >([]);
@@ -51,7 +51,7 @@ export const PizzaElementsSelection = () => {
     id: pizza.id,
     name: pizza.name,
     price,
-    crust,
+    Borda:'',
     size,
     additionalTopping,
     image: pizza.image,
@@ -92,7 +92,7 @@ export const PizzaElementsSelection = () => {
             {/* name */}
             <div className='font-semibold'>
               <h2 className='mb-1 text-3xl capitalize'>{pizza.name}</h2>
-              {/* size, crust text */}
+              {/* size, borda text */}
               <div className='mb-6 text-lg font-medium'>
                 <span>
                   {size === 'small'
@@ -103,12 +103,12 @@ export const PizzaElementsSelection = () => {
                     ? '35 cm'
                     : false}
                 </span>
-                <span>, {crust} crust</span>
+                <span>, {borda} borda</span>
               </div>
             </div>
             <SizeSelection size={size} setSize={setSize} pizza={pizza} />
-            <CrustSelection crust={crust} setCrust={setCrust} />
-            <div className='mb-1 text-xl font-semibold '>Choose topping</div>
+            <BordaSelection borda={borda} setBorda={setborda} />
+            <div className='mb-1 text-xl font-semibold '>Escolha a cobertura</div>
             <div className='mb-2 flex max-h-36 flex-1 flex-wrap justify-center gap-2 overflow-scroll py-1 lg:justify-start'>
               {pizza.toppings?.map((topping: ToppingType, index: number) => {
                 return (
@@ -141,8 +141,8 @@ export const PizzaElementsSelection = () => {
               }}
               className='btn btn-lg gradient flex w-full justify-center gap-x-2'
             >
-              <div>Add to cart for :</div>
-              <div>$ {price}</div>
+              <div>Adicionar ao carrinho por :</div>
+              <div>R$ {price}</div>
             </button>
           </div>
         </div>

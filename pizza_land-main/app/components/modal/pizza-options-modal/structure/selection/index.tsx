@@ -1,5 +1,5 @@
-import { CrustSelection } from './crust-selection';
+import { BordaSelection } from './borda-selection';
 import { Topping } from './topping';
 import { SizeSelection } from './size-selection';
 
-export { CrustSelection, Topping, SizeSelection };
+export { BordaSelection, Topping, SizeSelection };

@@ -7,7 +7,7 @@ export const CartTop = () => {
   return (
     <div className='flex items-center justify-between border-b-2 border-gray-200 px-6 py-6'>
       <h1 className='text-center font-quicksand  text-xl '>
-        Shopping Bag -{' '}
+        Carrinho -{' '}
         {cart.length === 1
           ? `${cart.length} product`
           : cart.length > 1

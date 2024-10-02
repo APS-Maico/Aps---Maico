@@ -34,7 +34,7 @@ export type Order = {
   id: number;
   name: string;
   price: number;
-  crust: string;
+  Borda: string;
   size: string;
   additionalTopping: ToppingType[];
   image: string;

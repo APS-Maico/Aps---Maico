@@ -21,10 +21,10 @@ export const Banner = () => {
             <div className="flex flex-col lg:flex-row items-center text-center lg:text-left flex-1 px-6 text-white">
               <div className="flex-1">
                 <div className="font-bangers text-[32px] text-white uppercase tracking-[0.03em]">
-                  Best pizza in town
+                Melhor pizza da cidade
                 </div>
                 <h1 className="text-6xl lg:text-8xl font-bangers text-white drop-shadow-md">
-                  Pizza perfection <br /> in every bite
+                  Perfeição de pizza  <br /> em cada mordida
                 </h1>
               </div>
             </div>

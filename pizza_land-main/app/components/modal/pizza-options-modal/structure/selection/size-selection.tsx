@@ -31,7 +31,7 @@ export const SizeSelection: React.FC<SizeSelectionProps> = ({
             onChange={(e) => setSize(e.target.value)}
             className='appearance-none'
           />
-          Small
+          Pequeno
         </label>
         <label className='flex cursor-pointer flex-col items-center gap-x-2'>
           <Image
@@ -53,7 +53,7 @@ export const SizeSelection: React.FC<SizeSelectionProps> = ({
             onChange={(e) => setSize(e.target.value)}
             className='appearance-none'
           />
-          Medium
+          Médio
         </label>
         <label className=' flex cursor-pointer flex-col items-center gap-x-2'>
           <Image
@@ -75,7 +75,7 @@ export const SizeSelection: React.FC<SizeSelectionProps> = ({
             onChange={(e) => setSize(e.target.value)}
             className='appearance-none'
           />
-          Large
+          Grande
         </label>
       </div>
     </div>
