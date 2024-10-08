@@ -34,7 +34,7 @@ export const Pizza: React.FC<PizzaProps> = ({ key, pizza }) => {
         </div>
         <div className='mb-6 flex items-center justify-between'>
           <div className='hidden text-xl font-semibold lg:flex'>
-          começar em {pizza.priceSm}
+          A partir de {pizza.priceSm}
           </div>
           <button
             className='gradient btn-sm hidden rounded-lg text-sm font-semibold text-white lg:flex'
@@ -52,7 +52,7 @@ export const Pizza: React.FC<PizzaProps> = ({ key, pizza }) => {
               setIsVisible(!isVisible);
             }}
           >
-            começar em {pizza.priceSm}
+            A partir de {pizza.priceSm}
           </button>
         </div>
       </div>
