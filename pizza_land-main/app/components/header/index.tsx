@@ -14,9 +14,9 @@ export const Header: React.FC<HeaderProps> = ({ addNewPizza }) => {
       <div className='container mx-auto flex flex-col items-center justify-between gap-y-3 lg:flex-row'>
         <BrandLogo />
         <div className='flex items-center gap-x-8'>
-          <PizzaButton addNewPizza={addNewPizza} />
           <Contact />
           <CartIcon />
+          <PizzaButton addNewPizza={addNewPizza} />
         </div>
       </div>
     </nav>
