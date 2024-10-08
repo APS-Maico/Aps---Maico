@@ -78,19 +78,19 @@ export const PizzaForm: React.FC<{ addNewPizza: (pizza: PizzaType) => void }> = 
       };
  
       addNewPizza(newPizza);
-      toast.success('Pizza added successfully!');
+      toast.success('Pizza adicionada com sucesso!');
     };
   };
  
   return (
     <div className='h-full w-full p-4'>
-      <h2 className='mb-6 text-center text-[20px] font-extrabold uppercase'>Add New Pizza</h2>
+      <h2 className='mb-6 text-center text-[20px] font-extrabold uppercase'>Adicionar nova Pizza</h2>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input ref={nameRef} placeholder="Pizza Name" className='input w-full' required />
-        <textarea ref={descriptionRef} placeholder="Pizza Description" className='textarea w-full h-32' required></textarea>
-        <input ref={priceLgRef} type="number" placeholder="Price (Large)" className='input w-full' required />
-        <input ref={priceMdRef} type="number" placeholder="Price (Medium)" className='input w-full' required />
-        <input ref={priceSmRef} type="number" placeholder="Price (Small)" className='input w-full' required />
+        <input ref={nameRef} placeholder="Nome da Pizza" className='input w-full' required />
+        <textarea ref={descriptionRef} placeholder="Descrição" className='textarea w-full h-32' required></textarea>
+        <input ref={priceLgRef} type="number" placeholder="Preço (Grande)" className='input w-full' required />
+        <input ref={priceMdRef} type="number" placeholder="Preço (Média)" className='input w-full' required />
+        <input ref={priceSmRef} type="number" placeholder="Preço (Pequena)" className='input w-full' required />
         <input
           ref={imageRef}
           type="file"
@@ -104,7 +104,7 @@ export const PizzaForm: React.FC<{ addNewPizza: (pizza: PizzaType) => void }> = 
           <div key={index} className='flex gap-2'>
             <input
               type="text"
-              placeholder="Topping Name"
+              placeholder="Adicionais"
               value={topping.name}
               onChange={(e) => handleToppingChange(index, 'name', e.target.value)}
               className='input flex-1'
@@ -119,18 +119,19 @@ export const PizzaForm: React.FC<{ addNewPizza: (pizza: PizzaType) => void }> = 
             />
             <input
               type="number"
-              placeholder="Topping Price"
+              placeholder="Preço Adicional"
               value={topping.price}
               onChange={(e) => handleToppingChange(index, 'price', e.target.value)}
               className='input w-24'
               required
+              style={{ appearance: 'textfield' }}
             />
-            <button type="button" onClick={() => removeToppingField(index)} className='btn btn-danger'>Remove</button>
+            <button type="button" onClick={() => removeToppingField(index)} className='btn btn-danger'>Remover</button>
           </div>
         ))}
-        <button type="button" onClick={addToppingField} className='btn btn-secondary'>Add Topping</button>
+        <button type="button" onClick={addToppingField} className='btn btn-secondary'>Adicionar Adicional</button>
  
-        <button type="submit" className='btn btn-lg gradient w-full'>Add Pizza</button>
+        <button type="submit" className='btn btn-lg gradient w-full'>Adicionar Pizza</button>
       </form>
     </div>
   );
