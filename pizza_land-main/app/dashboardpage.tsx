@@ -28,7 +28,7 @@ export default function DashboardPage() {
     labels: ['Margarita', 'Pepperoni', 'Quatro Queijos', 'Calabresa'],
     datasets: [
       {
-        label: 'Número de Vendas',
+        label: 'Número de Vendas no Dia',
         data: [12, 19, 3, 5],
         backgroundColor: '#D1411E',
         borderColor: '#7A9541',
@@ -121,7 +121,7 @@ export default function DashboardPage() {
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {/* Gráfico de Barras: Vendas por Pizza */}
           <div className='lg:col-span-2'>
-            <h2 className="text-xl font-semibold mb-4">Vendas por Tipo de Pizza</h2>
+            <h2 className="text-xl font-semibold mb-4">Vendas do Dia</h2>
             <Bar data={pizzaData} options={barOptions} />
           </div>
 
