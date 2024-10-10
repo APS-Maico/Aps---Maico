@@ -1,25 +1,25 @@
+// pages/index.tsx (ou onde fica a tela principal)
 'use client';
 
 import React, { useState } from 'react';
-import Header from '@/components/header'; // Corrija para importação padrão
+import Header from '@/components/header';
 import { Pizza } from '@/components/card';
 import { Banner } from '@/components/banner';
 import { Footer } from '@/components/footer';
 import { CartDesktop } from '@/components/cart';
 import { PizzaType } from '@/types/types';
-import PizzaButton from '@/components/newpizza/pizza-button'; // Importando o botão de adicionar pizza
+import Link from 'next/link';
 
 export default function Home() {
-  const [pizzas, setPizzas] = useState<PizzaType[]>([]); // Estado para armazenar as pizzas
+  const [pizzas, setPizzas] = useState<PizzaType[]>([]);
 
-  // Função para adicionar uma nova pizza ao estado
   const addNewPizza = (newPizza: PizzaType) => {
-    setPizzas((prevPizzas) => [...prevPizzas, newPizza]);
+    setPizzas((prevPizzas) => [...prevPizzas, { ...newPizza, quantity: 1 }]);
   };
 
   return (
     <section className='cursor-default'>
-      <Header addNewPizza={addNewPizza} /> {/* Passa a função para o Header */}
+      <Header addNewPizza={addNewPizza} />
       <Banner />
       <CartDesktop />
 
@@ -35,6 +35,19 @@ export default function Home() {
             </p>
           )}
         </div>
+      </div>
+
+      {/* Botão para acessar a tela de pedidos */}
+      <div className="text-center mt-8">
+        <Link href="/orders" className="bg-blue-500 text-white px-6 py-3 rounded-md">
+          Ver Pedidos Realizados
+        </Link>
+      </div>
+
+      <div className="text-center mt-8">
+        <Link href="/dashboardpage" className="bg-blue-500 text-white px-6 py-3 rounded-md">
+          Dashboards
+        </Link>
       </div>
 
       <Footer />

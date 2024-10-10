@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 // Adicione o novo passo "Revisar anúncio"
-const steps = ['Pedido confirmado', 'Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
+const steps = ['Pedido confirmado', 'Revisar anúncio', 'Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
 
 export default function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -75,7 +75,8 @@ export default function HorizontalNonLinearStepper() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', pt: 2 }}>
+              {/* Botões de Voltar e Próximo lado a lado à direita */}
               <Button
                 color="inherit"
                 disabled={activeStep === 0}
@@ -84,15 +85,12 @@ export default function HorizontalNonLinearStepper() {
               >
                 Voltar
               </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
               <Button onClick={handleNext} sx={{ mr: 1 }}>
                 Próximo
               </Button>
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
-                  <Typography variant="caption" sx={{ display: 'inline-block' }}>
-                    Passo {activeStep + 1} já concluído
-                  </Typography>
+                  <Typography/>
                 ) : (
                   <Button onClick={handleComplete}>
                     {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}

@@ -21,7 +21,8 @@ export type PizzaType = {
   priceMd: number;
   priceSm: number;
   image: string;
-  toppings: ToppingType[];
+  toppings?: ToppingType[];
+  quantity: number; 
 };
 
 export type SizeSelectionProps = {
