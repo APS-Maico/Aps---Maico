@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Header from '@/components/header';
 import OrderList from '@/components/Order/OrderList'; // Componente que exibe os pedidos
 import { PizzaType } from '@/types/types';
 
@@ -33,8 +32,7 @@ export default function Orders() {
 
   return (
     <section className='cursor-default'>
-      <Header addNewPizza={addNewPizza} />
-      
+  
     <div className="container mx-auto mt-8">
       <h1 className="text-3xl font-bold mb-6">Tela do Funcionário</h1>
       <OrderList orders={orders} />
