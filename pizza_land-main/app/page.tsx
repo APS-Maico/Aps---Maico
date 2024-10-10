@@ -7,7 +7,6 @@ import { Banner } from '@/components/banner';
 import { Footer } from '@/components/footer';
 import { CartDesktop } from '@/components/cart';
 import { PizzaType } from '@/types/types';
-import Link from 'next/link';
 import Dashboard from '@/pages/dashboardpage'; // Importe o componente Dashboard
 import Orders from '@/pages/orders'; // Importe o componente de pedidos realizados
 
@@ -50,13 +49,20 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Botão para acessar a tela de pedidos */}
-      <div className="text-center mt-8">
+      {/* Botões para acessar a tela de pedidos e o dashboard */}
+      <div className="flex justify-start mt-8 mb-8 space-x-4"> {/* Flexbox para alinhar os botões lado a lado */}
         <button 
           onClick={handleOrdersToggle} 
-          className="bg-blue-500 text-white px-6 py-3 rounded-md"
+          className='btn btn-sm gradient' type='button' // Botão menor
         >
-          {showOrders ? 'Fechar Pedidos Realizados' : 'Ver Pedidos Realizados'}
+          {showOrders ? 'Fechar Pedidos' : 'Ver Pedidos'}
+        </button>
+
+        <button 
+          onClick={handleDashboardToggle} 
+          className='btn btn-sm gradient' type='button' // Botão menor
+        >
+          {showDashboard ? 'Fechar Dashboard' : 'Abrir Dashboard'}
         </button>
       </div>
 
@@ -66,16 +72,6 @@ export default function Home() {
           <Orders /> {/* Certifique-se de que o componente Orders está importado */}
         </div>
       )}
-
-      {/* Botão para abrir o Dashboard */}
-      <div className="text-center mt-8">
-        <button 
-          onClick={handleDashboardToggle} 
-          className="bg-blue-500 text-white px-6 py-3 rounded-md"
-        >
-          {showDashboard ? 'Fechar Dashboard' : 'Abrir Dashboard'}
-        </button>
-      </div>
 
       {/* Renderiza o Dashboard condicionalmente */}
       {showDashboard && (

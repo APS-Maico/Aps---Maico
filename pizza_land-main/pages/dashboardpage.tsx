@@ -14,7 +14,6 @@ import {
   ArcElement,
 } from 'chart.js';
 
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 export default function DashboardPage() {
@@ -103,22 +102,34 @@ export default function DashboardPage() {
           <div className='p-4 bg-white rounded-lg shadow-md'>
             <h2 className="text-xl font-semibold">Total de Pizzas Vendidas</h2>
             <p className="text-2xl font-bold">{pizzas}</p>
+            {/* Adicionando botão para detalhes */}
+            <button className='btn btn-lg gradient w-full mt-4' type='button'>
+              Ver Detalhes
+            </button>
           </div>
 
           <div className='p-4 bg-white rounded-lg shadow-md'>
             <h2 className="text-xl font-semibold">Bairro com Mais Vendas</h2>
             <p className="text-2xl font-bold">{bairroMaisVendas}</p>
+            {/* Adicionando botão para detalhes */}
+            <button className='btn btn-lg gradient w-full mt-4' type='button'>
+              Ver Detalhes
+            </button>
           </div>
 
           <div className='p-4 bg-white rounded-lg shadow-md'>
             <h2 className="text-xl font-semibold">Pizza Mais Vendida</h2>
             <p className="text-2xl font-bold">{pizzaMaisVendida}</p>
+            {/* Adicionando botão para detalhes */}
+            <button className='btn btn-lg gradient w-full mt-4' type='button'>
+              Ver Detalhes
+            </button>
           </div>
         </div>
 
         {/* Gráficos */}
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          {/* Gráfico de Barras: Vendas por Pizza */}
+          {/* Gráfico de Barras: Vendas por Tipo de Pizza */}
           <div className='lg:col-span-2'>
             <h2 className="text-xl font-semibold mb-4">Vendas por Tipo de Pizza</h2>
             <Bar data={pizzaData} options={barOptions} />
