@@ -11,6 +11,7 @@ import Dashboard from '@/pages/dashboardpage'; // Importe o componente Dashboard
 import Orders from '@/pages/orders'; // Importe o componente de pedidos realizados
 
 export default function Home() {
+  document.title = 'DevPizza';
   const [pizzas, setPizzas] = useState<PizzaType[]>([]);
   const [showDashboard, setShowDashboard] = useState(false); // Estado para controle do Dashboard
   const [showOrders, setShowOrders] = useState(false); // Estado para controle dos pedidos realizados
