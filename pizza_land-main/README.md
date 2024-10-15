@@ -1,4 +1,4 @@
-# Pizza Land
+# devPizza
 
 ## Simple Pizza e-shop project.
 

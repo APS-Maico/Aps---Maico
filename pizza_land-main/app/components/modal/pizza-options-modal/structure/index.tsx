@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 
 import { Topping, SizeSelection, BordaSelection } from './selection';
 
-import { useCartContext, useVisibleContext } from '@/context';
+import { useCartContext, useVisibleContext} from '@/context';
 import { Order, ToppingType } from '@/types/types';
 
 export const PizzaElementsSelection = () => {
@@ -12,8 +12,8 @@ export const PizzaElementsSelection = () => {
   const { selectedPizza, setIsVisible } = useVisibleContext();
   const pizza = selectedPizza;
 
-  const [size, setSize] = React.useState<string>('small');
-  const [borda, setborda] = React.useState<string>('traditional');
+  const [size, setSize] = React.useState<string>('pequeno');
+  const [borda, setborda] = React.useState<string>('tradicional');
   const [additionalTopping, setAdditionalTopping] = React.useState<
     ToppingType[]
   >([]);
@@ -96,19 +96,19 @@ export const PizzaElementsSelection = () => {
               <div className='mb-6 text-lg font-medium'>
                 <span>
                   {size === 'small'
-                    ? '25 cm'
+                    ? '25 cm,'
                     : size === 'medium'
-                    ? '30 cm'
+                    ? '30 cm,'
                     : size === 'large'
-                    ? '35 cm'
-                    : false}
+                    ? '35 cm,'
+                    : ''}
                 </span>
-                <span>, {borda} borda</span>
+                {borda === 'tradicional' ? <span> borda {borda}</span> : <span> {borda}</span>}
               </div>
             </div>
             <SizeSelection size={size} setSize={setSize} pizza={pizza} />
             <BordaSelection borda={borda} setBorda={setborda} />
-            <div className='mb-1 text-xl font-semibold '>Escolha a cobertura</div>
+            <div className='mb-1 text-xl font-semibold '>Escolha o adicional</div>
             <div className='mb-2 flex max-h-36 flex-1 flex-wrap justify-center gap-2 overflow-scroll py-1 lg:justify-start'>
               {pizza.toppings?.map((topping: ToppingType, index: number) => {
                 return (
@@ -128,7 +128,7 @@ export const PizzaElementsSelection = () => {
                 addToCart(orderedPizza);
                 setIsVisible(false);
                 toast.success(
-                  `${orderedPizza.name.toUpperCase()} added to your cart !`,
+                  `${orderedPizza.name.toUpperCase()} adicionada ao carrinho !`,
                   {
                     style: {
                       fontWeight: 'base',

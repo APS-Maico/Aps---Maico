@@ -23,7 +23,7 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 export const metadata = {
-  title: 'Pizza Land',
+  title: 'Dev Pizza',
   description: 'Pizza Next Shop',
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='pt-br'>
       <body
         className={`${quicksand.variable} ${bangers.variable} ${robotoCondensed.variable} font-quicksand`}
       >

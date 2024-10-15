@@ -23,7 +23,7 @@ export default function DashboardPage() {
 
   // Dados para o gráfico de vendas por tipo de pizza
   const pizzaData = {
-    labels: ['Margarita', 'Pepperoni', 'Quatro Queijos', 'Calabresa'],
+    labels: ['Marguerita', 'Pepperoni', 'Quatro Queijos', 'Calabresa'],
     datasets: [
       {
         label: 'Número de Vendas',
