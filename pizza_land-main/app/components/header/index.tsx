@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ addNewPizza }) => {
   return (
-    <nav className='absolute w-full bg-pink-50/30 py-8'>
+    <nav className="relative w-full bg-primary py-8 bg-pattern bg-pattern-with-shadow">
       <div className='container mx-auto flex flex-col items-center justify-between gap-y-3 lg:flex-row'>
         <BrandLogo />
         <div className='flex items-center gap-x-8'>
