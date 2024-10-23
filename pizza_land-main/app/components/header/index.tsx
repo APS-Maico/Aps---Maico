@@ -21,7 +21,6 @@ export const Header: React.FC<HeaderProps> = ({ addNewPizza, showDashboard, onDa
       <div className='container mx-auto flex flex-col items-center justify-between gap-y-3 lg:flex-row'>
         <BrandLogo />
         <div className='flex items-center gap-x-8'>
-          <Contact />
           <CartIcon />
           <PizzaButton addNewPizza={addNewPizza} />
 

@@ -8,11 +8,11 @@ export default function PizzaButton({ addNewPizza }: { addNewPizza: (newPizza: P
   return (
 <div>
       {/* Imagem para abrir o modal de adicionar nova pizza */}
-<div className="container mx-auto mb-4">
+<div className="container mx-auto mb-4 p-0">
 <img 
           src="/pizzaicon.png" // Caminho para a imagem pizza-icone
           alt="Adicionar nova Pizza"
-          className="cursor-pointer w-12 h-12 mt-5 " // Ajuste o tamanho conforme necessário
+          className="p-0 cursor-pointer w-12 h-12 mt-5 " // Ajuste o tamanho conforme necessário
           onClick={() => setIsModalOpen(true)} // Abre o modal ao clicar na imagem
         />
 </div>

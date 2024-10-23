@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/header';
 import { Pizza } from '@/components/card';
 import { Banner } from '@/components/banner';
@@ -11,36 +11,59 @@ import Dashboard from '@/pages/dashboardpage'; // Importe o componente Dashboard
 import Orders from '@/pages/orders'; // Importe o componente de pedidos realizados
 
 export default function Home() {
-  document.title = 'DevPizza';
-  const [pizzas, setPizzas] = useState<PizzaType[]>([]);
-  const [showDashboard, setShowDashboard] = useState(false); // Estado para controle do Dashboard
-  const [showOrders, setShowOrders] = useState(false); // Estado para controle dos pedidos realizados
-  const [showBanner, setShowBanner] = useState(true); // Estado para controle do Banner
+  // UseEffect para alterar o título da página no cliente
+  useEffect(() => {
+    document.title = 'DevPizza'; // Isso só será executado no cliente
+  }, []);
 
+  // Estado das pizzas
+  const [pizzas, setPizzas] = useState<PizzaType[]>([]);
+
+  // Estados de controle do Dashboard, Pedidos e Banner
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
+
+  // Função para buscar as pizzas do localStorage quando o componente montar
+  useEffect(() => {
+    const storedPizzas = JSON.parse(localStorage.getItem('pizzas') || '[]');
+    setPizzas(storedPizzas); // Atualiza o estado com as pizzas armazenadas
+  }, []);
+
+  // Função para salvar pizzas no localStorage sempre que o estado mudar
+  useEffect(() => {
+    if (pizzas.length > 0) {
+      localStorage.setItem('pizzas', JSON.stringify(pizzas));
+    }
+  }, [pizzas]);
+
+  // Função para adicionar nova pizza e atualizar o estado
   const addNewPizza = (newPizza: PizzaType) => {
     setPizzas((prevPizzas) => [...prevPizzas, { ...newPizza, quantity: 1 }]);
   };
 
+  // Função para alternar o estado do Dashboard
   const handleDashboardToggle = () => {
-    setShowDashboard((prev) => !prev); // Alterna o estado do Dashboard
-    setShowOrders(false); // Esconde os pedidos realizados ao abrir o Dashboard
-    setShowBanner(!showDashboard); // Alterna a visibilidade do Banner
+    setShowDashboard((prev) => !prev);
+    setShowOrders(false);
+    setShowBanner(!showDashboard);
   };
 
+  // Função para alternar o estado dos pedidos
   const handleOrdersToggle = () => {
-    setShowOrders((prev) => !prev); // Alterna o estado dos pedidos realizados
-    setShowDashboard(false); // Esconde o Dashboard ao abrir os pedidos
-    setShowBanner(true); // Mostra o Banner ao abrir os pedidos
+    setShowOrders((prev) => !prev);
+    setShowDashboard(false);
+    setShowBanner(true);
   };
 
   return (
     <section className='cursor-default'>
       <Header 
         addNewPizza={addNewPizza} 
-        showDashboard={showDashboard} // Passa o estado do dashboard
-        onDashboardToggle={handleDashboardToggle} // Passa a função para alternar o dashboard
-        showOrders={showOrders} // Passa o estado dos pedidos
-        onOrdersToggle={handleOrdersToggle} // Passa a função para alternar os pedidos
+        showDashboard={showDashboard}
+        onDashboardToggle={handleDashboardToggle}
+        showOrders={showOrders}
+        onOrdersToggle={handleOrdersToggle}
       />
       
       {/* Renderiza o Banner condicionalmente */}
