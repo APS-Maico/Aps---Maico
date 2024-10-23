@@ -29,11 +29,11 @@ export const BordaSelection: React.FC<BordaSelectionProps> = ({
               className='h-4 w-4 appearance-none rounded-full border border-gray-400 checked:bg-gradient-to-r checked:from-primary checked:to-secondary'
               type='radio'
               name='borda'
-              value='fina'
+              value='sem borda'
               checked={borda === 'fina'}
               onChange={(e) => setBorda(e.target.value)}
             />
-            Afinar
+            Sem borda
           </label>
         </div>
       </div>
