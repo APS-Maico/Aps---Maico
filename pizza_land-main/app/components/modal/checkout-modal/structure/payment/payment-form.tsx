@@ -70,6 +70,25 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
         mentions,
       };
 
+      // Salvar o cliente, pizzas e quantidades no localStorage
+      const orderData = {
+          customer: `${data.firstName} ${data.lastName}`,
+          pizzas: cart.map((pizza: Order) => ({
+          name: pizza.name,
+          quantity: pizza.quantity,
+          })),
+        };
+
+      // Recuperar os pedidos existentes do localStorage
+      const existingOrders = localStorage.getItem('orders');
+      const ordersArray = existingOrders ? JSON.parse(existingOrders) : [];
+
+      // Adicionar o novo pedido ao array
+       ordersArray.push(orderData);
+
+      // Armazenar o array atualizado no localStorage
+      localStorage.setItem('orders', JSON.stringify(ordersArray));
+
       setCustomerIdentity(`${data.firstName} ${data.lastName}`);
       setSuccessMsg(true);
     } catch (error: unknown) {
