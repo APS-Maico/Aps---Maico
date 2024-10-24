@@ -9,6 +9,7 @@ import { CartDesktop } from '@/components/cart';
 import { PizzaType } from '@/types/types';
 import Dashboard from '@/pages/dashboardpage'; // Importe o componente Dashboard
 import Orders from '@/pages/orders'; // Importe o componente de pedidos realizados
+import ClientOrder from '@/components/Order/ClientOrder';
 
 export default function Home() {
   // UseEffect para alterar o título da página no cliente
@@ -23,6 +24,7 @@ export default function Home() {
   const [showDashboard, setShowDashboard] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
+  const [showClientOrders, setShowClientOrders] = useState(false);
 
   // Função para buscar as pizzas do localStorage quando o componente montar
   useEffect(() => {
@@ -46,6 +48,7 @@ export default function Home() {
   const handleDashboardToggle = () => {
     setShowDashboard((prev) => !prev);
     setShowOrders(false);
+    setShowClientOrders(false);
     setShowBanner(!showDashboard);
   };
 
@@ -54,6 +57,15 @@ export default function Home() {
     setShowOrders((prev) => !prev);
     setShowDashboard(false);
     setShowBanner(true);
+    setShowClientOrders(false);
+  };
+
+  const handleClientOrderClick = () => {
+    setShowClientOrders((prev) => !prev);
+    setShowOrders(false); // Esconde a página de pedidos do funcionário
+    setShowDashboard(false); // Esconde o dashboard
+    setShowBanner(true); 
+  
   };
 
   return (
@@ -64,15 +76,16 @@ export default function Home() {
         onDashboardToggle={handleDashboardToggle}
         showOrders={showOrders}
         onOrdersToggle={handleOrdersToggle}
+        onClientOrderClick={handleClientOrderClick} // Passa a função para o Header
       />
       
       {/* Renderiza o Banner condicionalmente */}
-      {showBanner && !showDashboard && !showOrders && <Banner />}
+      {showBanner && !showDashboard && !showOrders && !showClientOrders && <Banner />}
 
       <CartDesktop />
 
       {/* Renderiza a seção de pizzas condicionalmente */}
-      {!showDashboard && !showOrders && (
+      {!showDashboard && !showOrders &&  !showClientOrders && (
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8'>
             {pizzas.length > 0 ? (
@@ -101,7 +114,12 @@ export default function Home() {
           <Dashboard /> {/* Certifique-se de que o componente Dashboard está importado */}
         </div>
       )}
-
+            {/* Renderiza os pedidos do cliente condicionalmente */}
+       {showClientOrders && (
+        <div className="mt-8">
+          <ClientOrder /> {/* Exibe a página de Meus Pedidos */}
+        </div>
+      )}
       <Footer />
     </section>
   );
