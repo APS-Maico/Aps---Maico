@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Stepper from '@/components/stepper/stepper'; // Importa o componente Stepper
+import Stepper from '@/components/stepper/stepperCliente'; // Importa o componente Stepper
 import { PizzaType } from '@/types/types'; // Suas definições de tipos
 
 interface Order {

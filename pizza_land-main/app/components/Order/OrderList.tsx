@@ -1,36 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PizzaType } from '@/types/types';
-
+ 
 interface Order {
-  customer: string; // Nome do cliente
-  pizzas: PizzaType[]; // Lista de pizzas
+  customer: string;
+  pizzas: PizzaType[];
 }
-
-export default function OrderList() {
-  const [orders, setOrders] = useState<Order[]>([]); // Estado para armazenar múltiplos pedidos
-
-  // Função para carregar os pedidos do localStorage
-  useEffect(() => {
-    const savedOrders = localStorage.getItem('orders'); // Recupera os pedidos salvos no localStorage
-    if (savedOrders) {
-      const parsedOrders: Order[] = JSON.parse(savedOrders); // Converte os pedidos para objetos
-      setOrders(parsedOrders); // Atualiza o estado com os pedidos recuperados
-    }
-  }, []);
-
+ 
+interface OrderListProps {
+  orders: Order[]; // Lista de pedidos passada como prop
+  onOrderClick: (order: Order) => void; // Função chamada ao clicar no pedido
+}
+ 
+const OrderList: React.FC<OrderListProps> = ({ orders, onOrderClick }) => {
   return (
     <div className="container mx-auto">
       <h2 className="text-2xl font-semibold mb-4">Pedidos a Preparar</h2>
-      {orders.length > 0 ? ( // Verifica se existem pedidos
+      {orders.length > 0 ? (
         <ul className="space-y-4">
           {orders.map((order, index) => (
-            <li key={index} className="border border-gray-300 rounded-md p-4">
+            <li
+              key={index}
+              className="border border-gray-300 rounded-md p-4 cursor-pointer"
+              onClick={() => onOrderClick(order)} // Chama onOrderClick quando o pedido é clicado
+            >
               <span className="font-medium text-lg">Cliente: {order.customer}</span>
               <ul className="space-y-2 mt-2">
                 {order.pizzas.map((pizza: PizzaType, pizzaIndex: number) => (
                   <li key={pizzaIndex} className="flex justify-between items-center">
-                    <span className="font-medium">Sabor: {pizza.name}</span> {/* Nome da pizza */}
-                    <span className="text-sm text-gray-500">Quantidade: {pizza.quantity}</span> {/* Quantidade */}
+                    <span className="font-medium">Sabor: {pizza.name}</span>
+                    <span className="text-sm text-gray-500">Quantidade: {pizza.quantity}</span>
                   </li>
                 ))}
               </ul>
@@ -42,4 +40,6 @@ export default function OrderList() {
       )}
     </div>
   );
-}
+};
+ 
+export default OrderList;
