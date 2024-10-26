@@ -53,6 +53,7 @@ export const VisibleContextProvider: React.FC<ContextProviderProps> = ({
     priceSm: 0,
     image: '',
     toppings: [],
+    quantity: 1,
   });
 
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
