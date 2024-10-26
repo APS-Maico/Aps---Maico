@@ -1,5 +1,5 @@
 {
    "rewrites":  [
-       {"source": "/(.*)", "destination": "/pizza_land-main/app/page.tsx"}
+       {"source": "/(.*)", "destination": "/app/page.tsx"}
     ]
 }
