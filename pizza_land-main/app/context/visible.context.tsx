@@ -30,6 +30,7 @@ export const VisibleContext = React.createContext<VisibleContextType>({
     priceSm: 0,
     image: '',
     toppings: [],
+    quantity: 1,
   },
   setSelectedPizza: () => {},
   isVisible: false,
