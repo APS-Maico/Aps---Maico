@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import OrderList from '@/components/Order/OrderList'; // Certifique-se de que o caminho está correto
 import { PizzaType } from '@/types/types';
 import HorizontalNonLinearStepper from '@/components/stepper/stepper';
-interface Order {
-  customer: string;
-  pizzas: PizzaType[];
-}
+import { Order } from '@/types/types';
  
 const OrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -33,7 +30,7 @@ const OrdersPage: React.FC = () => {
         {selectedOrder ? (
           <div>
             <h3 className="text-lg font-semibold">Cliente: {selectedOrder.customer}</h3>
-            <HorizontalNonLinearStepper /> {/* Renderiza o Stepper */}
+            <HorizontalNonLinearStepper orderId={0} /> {/* Renderiza o Stepper */}
             <button
               className="mt-4 text-blue-500"
               onClick={() => setSelectedOrder(null)} // Volta para a lista de pedidos

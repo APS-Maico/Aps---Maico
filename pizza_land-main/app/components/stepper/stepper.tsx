@@ -1,4 +1,3 @@
-// components/Stepper.tsx
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -7,19 +6,29 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-// Adicione o novo passo "Revisar anúncio"
-const steps = ['Pedido confirmado','Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
+const steps = ['Pedido confirmado', 'Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
 
-export default function HorizontalNonLinearStepper() {
+interface StepperProps {
+  orderId: number; // Adicione a propriedade para identificar o pedido
+}
+
+export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
 
+  // Carregar o estado do stepper do localStorage quando o componente é montado
+  React.useEffect(() => {
+    const savedData = localStorage.getItem(`order-${orderId}`);
+    if (savedData) {
+      const { activeStep, completed } = JSON.parse(savedData);
+      setActiveStep(activeStep);
+      setCompleted(completed);
+    }
+  }, [orderId]);
+
   const totalSteps = () => steps.length;
-
   const completedSteps = () => Object.keys(completed).length;
-
   const isLastStep = () => activeStep === totalSteps() - 1;
-
   const allStepsCompleted = () => completedSteps() === totalSteps();
 
   const handleNext = () => {
@@ -39,16 +48,26 @@ export default function HorizontalNonLinearStepper() {
   };
 
   const handleComplete = () => {
-    setCompleted({
+    const newCompleted = {
       ...completed,
       [activeStep]: true,
-    });
+    };
+
+    setCompleted(newCompleted);
     handleNext();
+
+    // Salvar o estado do pedido no localStorage
+    const orderData = {
+      activeStep: activeStep + 1,
+      completed: newCompleted,
+    };
+    localStorage.setItem(`order-${orderId}`, JSON.stringify(orderData));
   };
 
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+    localStorage.removeItem(`order-${orderId}`); // Limpa o armazenamento do pedido ao resetar
   };
 
   return (
@@ -78,7 +97,7 @@ export default function HorizontalNonLinearStepper() {
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', pt: 2 }}>
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
-                  <Typography/>
+                  <Typography />
                 ) : (
                   <Button onClick={handleComplete}>
                     {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}
