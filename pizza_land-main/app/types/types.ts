@@ -2,17 +2,17 @@ export type PizzaProps = {
   key?: string;
   pizza: PizzaType;
 };
-
+ 
 export type CartItemProps = {
   order: Order;
 };
-
+ 
 export type ToppingType = {
   name: string;
   image: string;
   price: number;
 };
-
+ 
 export type PizzaType = {
   id: number;
   name: string;
@@ -22,15 +22,15 @@ export type PizzaType = {
   priceSm: number;
   image: string;
   toppings?: ToppingType[];
-  quantity: number; 
+  quantity: number;
 };
-
+ 
 export type SizeSelectionProps = {
   pizza: PizzaType;
   size: string;
   setSize: (size: string) => void;
 };
-
+ 
 export type Order = {
   id: number;  // ID único do pedido
   name: string;  // Nome do pedido (por exemplo, nome da pizza)
@@ -43,18 +43,18 @@ export type Order = {
   pizzas: PizzaType[];  // Lista de pizzas no pedido
   customer:string;
 };
-
+ 
 export type ToppingProps = {
   topping: ToppingType;
   additionalTopping: ToppingType[];
   setAdditionalTopping: React.Dispatch<React.SetStateAction<ToppingType[]>>;
 };
-
+ 
 export interface PaymentFormProps {
   setSuccessMsg: React.Dispatch<React.SetStateAction<boolean>>;
   setCustomerIdentity: React.Dispatch<React.SetStateAction<string | null>>;
 }
-
+ 
 export interface DataProps {
   firstName: string;
   lastName: string;

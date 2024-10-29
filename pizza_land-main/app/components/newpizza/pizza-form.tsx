@@ -75,6 +75,7 @@ export const PizzaForm: React.FC<{ addNewPizza: (pizza: PizzaType) => void }> = 
           image: topping.image,
           price: topping.price,
         })) as ToppingType[],
+          quantity: 1,
       };
  
       addNewPizza(newPizza);

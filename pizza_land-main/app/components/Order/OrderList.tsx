@@ -1,7 +1,11 @@
 import React from 'react';
-import { Order } from '@/types/types'; // Importe o tipo Order correto
-import { PizzaType } from '@/types/types'; // Importar também PizzaType se necessário
-
+import { PizzaType } from '@/types/types';
+ 
+interface Order {
+  customer: string;
+  pizzas: PizzaType[];
+}
+ 
 interface OrderListProps {
   orders: Order[]; // Lista de pedidos passada como prop
   onOrderClick: (order: Order) => void; // Função chamada ao clicar no pedido

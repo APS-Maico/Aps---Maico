@@ -5,6 +5,7 @@ import { PizzaType } from '@/types/types';
 import DashboardButton from '@/components/dashboard-button/dashboard-button'; // Importe o componente do botão do dashboard
 import OrdersToggleButton from '@/components/pedidos-button/pedidos-button'; // Importe o componente do botão de pedidos
 import MyOrdersButton from '@/components/pedidos-button/CllientOrder-button'; // Botão de Meus Pedidos para o cliente
+import MotoboyButton from '@/components/Motoboy/Motoboy-button'; // Importe o componente do botão de motoboy
 
 interface HeaderProps {
   addNewPizza: (newPizza: PizzaType) => void;
@@ -13,6 +14,7 @@ interface HeaderProps {
   showOrders: boolean; // Adicione esta prop para controlar o estado dos pedidos
   onOrdersToggle: () => void; // Adicione esta prop para a função que alterna os pedidos
   onClientOrderClick: () => void; // Função que será chamada ao clicar em "Meus Pedidos"
+  onMotoboyToggle: () => void; // Adicione esta prop para alternar o modo motoboy
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -21,7 +23,8 @@ export const Header: React.FC<HeaderProps> = ({
   onDashboardToggle,
   showOrders,
   onOrdersToggle,
-  onClientOrderClick
+  onClientOrderClick,
+  onMotoboyToggle // Recebe a função para alternar o modo motoboy
 }) => {
   return (
     <nav className="relative w-full bg-primary py-8 bg-pattern bg-pattern-with-shadow">
@@ -45,6 +48,9 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Adiciona o botão de Meus Pedidos para o cliente */}
           <MyOrdersButton onClick={onClientOrderClick} />
+
+          {/* Adiciona o botão do Motoboy */}
+          <MotoboyButton onClick={onMotoboyToggle} />
         </div>
       </div>
     </nav>
