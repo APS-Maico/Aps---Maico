@@ -1,16 +1,12 @@
 import React from 'react';
-import { PizzaType } from '@/types/types';
- 
-interface Order {
-  customer: string;
-  pizzas: PizzaType[];
-}
+import { Order } from '@/types/types'; // Importe o tipo Order correto
+import { PizzaType } from '@/types/types'; // Importar também PizzaType se necessário
  
 interface OrderListProps {
   orders: Order[]; // Lista de pedidos passada como prop
   onOrderClick: (order: Order) => void; // Função chamada ao clicar no pedido
 }
-
+ 
 const OrderList: React.FC<OrderListProps> = ({ orders, onOrderClick }) => {
   return (
     <div className="container mx-auto">
@@ -41,5 +37,5 @@ const OrderList: React.FC<OrderListProps> = ({ orders, onOrderClick }) => {
     </div>
   );
 };
-
+ 
 export default OrderList;

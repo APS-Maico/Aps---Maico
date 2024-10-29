@@ -6,12 +6,28 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-// Adicione o novo passo "Revisar anúncio"
-const steps = ['Pedido confirmado','Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
+const steps = ['Pedido confirmado', 'Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
 
-export default function HorizontalNonLinearStepper() {
+interface StepperProps {
+  orderId: number;
+  isClientView?: boolean; // Adiciona uma prop opcional para o modo cliente
+}
+
+export default function HorizontalNonLinearStepper({ orderId, isClientView = false }: StepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
+
+  // Carregar o estado do stepper do localStorage quando o componente é montado
+  React.useEffect(() => {
+    const savedData = localStorage.getItem(`order-${orderId}`);
+    if (savedData) {
+      const { activeStep, completed } = JSON.parse(savedData);
+      if (activeStep !== undefined && completed !== undefined) { // Verifica se os valores estão definidos
+        setActiveStep(activeStep);
+        setCompleted(completed);
+      }
+    }
+  }, [orderId]);
 
   const totalSteps = () => steps.length;
   const completedSteps = () => Object.keys(completed).length;
@@ -40,15 +56,19 @@ export default function HorizontalNonLinearStepper() {
     const newCompleted = {
       ...completed,
       [activeStep]: true,
-    });
-    handleNext();
+    };
 
-    // Salvar o estado do pedido no localStorage
+    setCompleted(newCompleted);
+
+    // Salvar o estado do pedido atualizado no localStorage
     const orderData = {
-      activeStep: activeStep + 1,
+      activeStep: activeStep + 1, // Avança o activeStep corretamente
       completed: newCompleted,
     };
     localStorage.setItem(`order-${orderId}`, JSON.stringify(orderData));
+
+    // Chama handleNext após salvar no localStorage
+    handleNext();
   };
 
   const handleReset = () => {
@@ -80,14 +100,11 @@ export default function HorizontalNonLinearStepper() {
         ) : (
           <React.Fragment>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', pt: 2 }}>
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography/>
-                ) : (
-                  <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}
-                  </Button>
-                ))}
+              {activeStep !== steps.length && !isClientView && (
+                <Button onClick={handleComplete}>
+                  {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}
+                </Button>
+              )}
             </Box>
           </React.Fragment>
         )}

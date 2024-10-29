@@ -20,7 +20,6 @@ export default function OrderList() {
       setOrders(parsedOrders);
     }
   }, []);
-  
   const handleOrderClick = (order: Order) => {
     setSelectedOrder(order);
     console.log("Pedido selecionado:", order); // Debug: verificar qual pedido foi selecionado
@@ -36,7 +35,7 @@ export default function OrderList() {
           <p>Cliente: {selectedOrder.customer}</p>
           <p>Pizza(s): {selectedOrder.pizzas.map(pizza => `${pizza.name} (${pizza.quantity})`).join(', ')}</p>
 
-          <Stepper orderId={0} isClientView={true} /> {/* Passa isClientView como true */}
+          <Stepper orderId={selectedOrder.id} isClientView={true} /> {/* Passa isClientView como true */}
 
           <button
             className="mt-4 text-blue-500 underline"
