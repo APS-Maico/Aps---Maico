@@ -9,10 +9,11 @@ import Typography from '@mui/material/Typography';
 const steps = ['Pedido confirmado', 'Pedido em preparo', 'Pedido a caminho', 'Pedido Entregue'];
 
 interface StepperProps {
-  orderId: number; // Adicione a propriedade para identificar o pedido
+  orderId: number;
+  isClientView?: boolean; // Adiciona uma prop opcional para o modo cliente
 }
 
-export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
+export default function HorizontalNonLinearStepper({ orderId, isClientView = false }: StepperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
 
@@ -21,8 +22,10 @@ export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
     const savedData = localStorage.getItem(`order-${orderId}`);
     if (savedData) {
       const { activeStep, completed } = JSON.parse(savedData);
-      setActiveStep(activeStep);
-      setCompleted(completed);
+      if (activeStep !== undefined && completed !== undefined) { // Verifica se os valores estão definidos
+        setActiveStep(activeStep);
+        setCompleted(completed);
+      }
     }
   }, [orderId]);
 
@@ -44,7 +47,9 @@ export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
   };
 
   const handleStep = (step: number) => () => {
-    setActiveStep(step);
+    if (!isClientView) { // Apenas permite clicar se não estiver na visão do cliente
+      setActiveStep(step);
+    }
   };
 
   const handleComplete = () => {
@@ -54,14 +59,16 @@ export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
     };
 
     setCompleted(newCompleted);
-    handleNext();
 
-    // Salvar o estado do pedido no localStorage
+    // Salvar o estado do pedido atualizado no localStorage
     const orderData = {
-      activeStep: activeStep + 1,
+      activeStep: activeStep + 1, // Avança o activeStep corretamente
       completed: newCompleted,
     };
     localStorage.setItem(`order-${orderId}`, JSON.stringify(orderData));
+
+    // Chama handleNext após salvar no localStorage
+    handleNext();
   };
 
   const handleReset = () => {
@@ -75,7 +82,7 @@ export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
+            <StepButton color="inherit" onClick={handleStep(index)} disabled={isClientView}> {/* Desabilita o clique se for a visão do cliente */}
               {label}
             </StepButton>
           </Step>
@@ -84,25 +91,20 @@ export default function HorizontalNonLinearStepper({ orderId }: StepperProps) {
       <div>
         {allStepsCompleted() ? (
           <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              Pedido concluído
-            </Typography>
+            <Typography sx={{ mt: 2, mb: 1 }}>Pedido concluído</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Resetar</Button>
+              {!isClientView && <Button onClick={handleReset}>Resetar</Button>}
             </Box>
           </React.Fragment>
         ) : (
           <React.Fragment>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', pt: 2 }}>
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography />
-                ) : (
-                  <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}
-                  </Button>
-                ))}
+              {activeStep !== steps.length && !isClientView && (
+                <Button onClick={handleComplete}>
+                  {completedSteps() === totalSteps() - 1 ? 'Finalizar' : 'Completar Passo'}
+                </Button>
+              )}
             </Box>
           </React.Fragment>
         )}

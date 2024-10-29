@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Stepper from '@/components/stepper/stepperCliente'; // Importa o componente Stepper
-import { PizzaType } from '@/types/types'; // Suas definições de tipos
+import Stepper from '@/components/stepper/stepper';
+import { PizzaType } from '@/types/types';
 
 interface Order {
   id: number;
   customer: string;
   pizzas: PizzaType[];
-  status: string; // status do pedido
+  status: string;
 }
 
 export default function OrderList() {
@@ -14,15 +14,16 @@ export default function OrderList() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   useEffect(() => {
-    // Recupera pedidos do localStorage
     const savedOrders = localStorage.getItem('orders');
     if (savedOrders) {
-      setOrders(JSON.parse(savedOrders));
+      const parsedOrders: Order[] = JSON.parse(savedOrders);
+      setOrders(parsedOrders);
     }
   }, []);
-
+  
   const handleOrderClick = (order: Order) => {
-    setSelectedOrder(order); // Seleciona o pedido para mostrar os detalhes
+    setSelectedOrder(order);
+    console.log("Pedido selecionado:", order); // Debug: verificar qual pedido foi selecionado
   };
 
   return (
@@ -34,13 +35,12 @@ export default function OrderList() {
           <h2 className="text-xl font-semibold mb-4">Detalhes do Pedido #{selectedOrder.id}</h2>
           <p>Cliente: {selectedOrder.customer}</p>
           <p>Pizza(s): {selectedOrder.pizzas.map(pizza => `${pizza.name} (${pizza.quantity})`).join(', ')}</p>
-          
-          {/* Renderiza o Stepper aqui */}
-          <Stepper />
-          
+
+          <Stepper orderId={0} isClientView={true} /> {/* Passa isClientView como true */}
+
           <button
             className="mt-4 text-blue-500 underline"
-            onClick={() => setSelectedOrder(null)} // Voltar para a lista de pedidos
+            onClick={() => setSelectedOrder(null)}
           >
             Voltar à lista de pedidos
           </button>
@@ -48,7 +48,11 @@ export default function OrderList() {
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {orders.map((order) => (
-            <div key={order.id} className="border p-4 rounded-lg cursor-pointer" onClick={() => handleOrderClick(order)}>
+            <div
+              key={order.id}
+              className="border p-4 rounded-lg cursor-pointer"
+              onClick={() => handleOrderClick(order)}
+            >
               <h2 className="font-semibold">Pedido #{order.id}</h2>
               <p>Cliente: {order.customer}</p>
               <p>{order.pizzas.length} pizza(s) no pedido</p>
