@@ -6,6 +6,7 @@ import DashboardButton from '@/components/dashboard-button/dashboard-button';
 import OrdersToggleButton from '@/components/pedidos-button/pedidos-button';
 import MyOrdersButton from '@/components/pedidos-button/CllientOrder-button';
 import MotoboyButton from '@/components/Motoboy/Motoboy-button';
+import { FaUserCircle } from 'react-icons/fa';
 
 interface HeaderProps {
   addNewPizza: (newPizza: PizzaType) => void;
@@ -26,72 +27,78 @@ export const Header: React.FC<HeaderProps> = ({
   onClientOrderClick,
   onMotoboyToggle
 }) => {
-  const [profile, setProfile] = useState<string | null>(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const [profile, setProfile] = useState<string>('client');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleProfileChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setProfile(event.target.value);
-    setIsPopupOpen(false); // Fecha o popup ao selecionar o perfil
+  const handleProfileChange = (newProfile: string) => {
+    setProfile(newProfile);
+    setIsDropdownOpen(false);
   };
 
   return (
     <>
-      {/* Popup para selecionar o perfil */}
-      {isPopupOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-md shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Escolha seu perfil</h2>
-            <select 
-              onChange={handleProfileChange} 
-              className="p-2 border rounded"
-              defaultValue=""
-            >
-              <option value="" disabled>Selecione o perfil</option>
-              <option value="admin">Administrador</option>
-              <option value="motoboy">Motoboy</option>
-              <option value="client">Cliente</option>
-            </select>
-          </div>
-        </div>
-      )}
-
-      {/* Header principal */}
       <nav className="relative w-full bg-primary py-8 bg-pattern bg-pattern-with-shadow">
         <div className="container mx-auto flex flex-col items-center justify-between gap-y-3 lg:flex-row">
           <BrandLogo />
+          
           <div className="flex items-center gap-x-8">
             <CartIcon />
 
-            {/* Exibe o PizzaButton para administrador e cliente */}
             {profile === 'admin' && (
               <PizzaButton addNewPizza={addNewPizza} />
             )}
-
-            {/* Exibe o DashboardButton apenas para administrador */}
             {profile === 'admin' && (
               <DashboardButton 
                 isOpen={showDashboard} 
                 onToggle={onDashboardToggle} 
               />
             )}
-
-            {/* Exibe o OrdersToggleButton apenas para administrador */}
             {profile === 'admin' && (
               <OrdersToggleButton 
                 isOpen={showOrders} 
                 onToggle={onOrdersToggle} 
               />
             )}
-
-            {/* Exibe o MyOrdersButton apenas para cliente */}
             {profile === 'client' && (
               <MyOrdersButton onClick={onClientOrderClick} />
             )}
-
-            {/* Exibe o MotoboyButton apenas para motoboy */}
             {profile === 'motoboy' && (
               <MotoboyButton onClick={onMotoboyToggle} />
             )}
+
+            {/* Ícone de perfil com novas dimensões */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-[#ffa323] w-10 h-10 flex items-center justify-center rounded-full focus:outline-none"
+              >
+                <FaUserCircle className="w-full h-full" />
+              </button>
+              
+              {/* Dropdown para seleção de perfil */}
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-300 rounded-md shadow-lg">
+                  <button
+                    onClick={() => handleProfileChange('admin')}
+                    className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                  >
+                    Administrador
+                  </button>
+                  <button
+                    onClick={() => handleProfileChange('motoboy')}
+                    className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                  >
+                    Motoboy
+                  </button>
+                  <button
+                    onClick={() => handleProfileChange('client')}
+                    className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                  >
+                    Cliente
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>

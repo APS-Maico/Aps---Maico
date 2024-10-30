@@ -57,7 +57,7 @@ export const CartItem: React.FC<CartItemProps> = ({ order }) => {
         <div className='mt-4 flex w-full gap-3 py-4 pl-6'>
           <div className='flex flex-wrap items-center gap-3'>
             <h1 className='mr-5'>
-              {additionnalToppingPurchased > 1 ? 'Toppings:' : 'Topping:'}
+              {additionnalToppingPurchased > 1 ? 'Adicionais:' : 'Adicionais:'}
             </h1>
             {order?.additionalTopping.map((item, index) => {
               return (

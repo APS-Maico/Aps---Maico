@@ -3,6 +3,7 @@ import { DataProps, Order, PaymentFormProps } from '@/types/types';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import QRCode from '@/public/qrcode.png';
+import { Topping } from '@/components/modal/pizza-options-modal/structure/selection';
 
 export const PaymentForm: React.FC<PaymentFormProps> = ({
   setSuccessMsg,
@@ -110,17 +111,17 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
           <div className="flex h-full flex-col gap-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:gap-x-4">
               <input
-                name="firstname"
+                name="Primeiro NOme"
                 type="text"
                 className="input w-full"
-                placeholder="First Name"
+                placeholder="Nome"
                 ref={firstNameRef}
               />
               <input
                 name="lastname"
                 type="text"
                 className="input w-full"
-                placeholder="Last Name"
+                placeholder="Sobrenome"
                 ref={lastNameRef}
               />
             </div>
@@ -129,14 +130,14 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
                 name="phone-number"
                 type="number"
                 className="input w-full"
-                placeholder="Phone"
+                placeholder="Numero de Telefone"
                 ref={phoneRef}
               />
               <input
                 name="email"
                 type="email"
                 className="input w-full"
-                placeholder="Email Address"
+                placeholder="Email"
                 ref={emailRef}
               />
             </div>
@@ -145,14 +146,14 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
                 name="street-name"
                 type="text"
                 className="input w-full"
-                placeholder="Street Name"
+                placeholder="Rua"
                 ref={streetNameRef}
               />
               <input
                 name="street-number"
                 type="number"
                 className="input w-full"
-                placeholder="Street No."
+                placeholder="N. Residência"
                 ref={streetNumberRef}
               />
             </div>
@@ -161,21 +162,21 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
                 name="block"
                 type="text"
                 className="input w-full"
-                placeholder="Block"
+                placeholder="Bairro"
                 ref={blockRef}
               />
               <input
                 name="floor"
                 type="number"
                 className="input w-full"
-                placeholder="Floor"
+                placeholder="Andar"
                 ref={floorRef}
               />
               <input
                 name="apt"
                 type="number"
                 className="input w-full"
-                placeholder="Apt. No."
+                placeholder="N. apartamento"
                 ref={aptRef}
               />
             </div>
@@ -183,7 +184,7 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
               <textarea
                 name="mentions"
                 className="textarea w-full"
-                placeholder="Mentions (optional)"
+                placeholder="Descrição"
                 ref={mentionsRef}
               ></textarea>
             </div>
