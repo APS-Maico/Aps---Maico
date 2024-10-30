@@ -49,6 +49,7 @@ export default function Home() {
     setShowOrders(false);
     setShowClientOrders(false);
     setShowBanner(!showDashboard);
+    setIsMotoboyMode(false);
   };
 
   const handleOrdersToggle = () => {
@@ -56,6 +57,7 @@ export default function Home() {
     setShowDashboard(false);
     setShowBanner(true);
     setShowClientOrders(false);
+    setIsMotoboyMode(false);
   };
 
   const handleClientOrderClick = () => {
@@ -63,6 +65,7 @@ export default function Home() {
     setShowOrders(false);
     setShowDashboard(false);
     setShowBanner(true);
+    setIsMotoboyMode(false);
   };
 
   const handleMotoboyToggle = () => {
