@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
     <>
       {/* Popup para selecionar o perfil */}
       {isPopupOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-md shadow-lg">
             <h2 className="text-lg font-semibold mb-4">Escolha seu perfil</h2>
             <select 
@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
             <CartIcon />
 
             {/* Exibe o PizzaButton para administrador e cliente */}
-            {(profile === 'admin') && (
+            {profile === 'admin' && (
               <PizzaButton addNewPizza={addNewPizza} />
             )}
 
