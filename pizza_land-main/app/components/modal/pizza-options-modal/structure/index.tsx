@@ -51,11 +51,13 @@ export const PizzaElementsSelection = () => {
     id: pizza.id,
     name: pizza.name,
     price,
-    Borda:'',
+    Borda: '',
     size,
     additionalTopping,
     image: pizza.image,
     quantity: 1,
+    pizzas: [],
+    customer: ''
   };
 
   React.useEffect(() => {
